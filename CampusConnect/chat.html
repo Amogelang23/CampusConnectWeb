@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CampusConnect - Private Chat</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div id="app-container">
+        
+        <aside id="left-sidebar" class="desktop-sidebar">
+            <div style="text-align: center; margin-bottom: 32px;">
+                <h2 style="color: var(--primary);">CampusConnect</h2>
+            </div>
+            <nav>
+                <a href="home.html" class="desktop-nav-link">News Feed</a>
+                <a href="chat.html" class="desktop-nav-link active">Messages</a>
+                <a href="create-post.html" class="desktop-nav-link">Create Post</a>
+                <a href="friends.html" class="desktop-nav-link">Friends</a>
+                <a href="profile.html" class="desktop-nav-link">Profile</a>
+            </nav>
+        </aside>
+
+        <main class="main-content" style="padding: 0; position: relative;">
+            <div id="no-chat-selected">
+                <p>Select a friend from the list to start chatting.</p>
+            </div>
+
+            <div id="chat-interface" class="chat-container">
+                <div style="padding: 16px; border-bottom: 1px solid var(--text-secondary); background-color: var(--surface);">
+                    <h2 id="chat-header-name" style="font-size: 20px;">Chat</h2>
+                </div>
+                
+                <div class="messages-area" id="messages-area">
+                    <!-- Messages injected here -->
+                </div>
+
+                <!-- GIF Picker -->
+                <div id="gif-picker" class="gif-picker-container">
+                    <input type="text" id="gif-search" class="input-field" placeholder="Search GIFs..." style="margin-bottom: 8px; padding: 8px;">
+                    <div id="gif-results" class="gif-results-grid"></div>
+                </div>
+
+                <div class="chat-input-area">
+                    <button id="btn-gif" class="action-btn" style="color: var(--text-secondary);">GIF</button>
+                    <input type="text" id="chat-input" class="input-field" placeholder="Message..." autocomplete="off">
+                    <button id="btn-send" class="action-btn">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+                    </button>
+                </div>
+            </div>
+        </main>
+
+        <aside id="right-sidebar" class="desktop-sidebar">
+            <h3 style="margin-bottom: 16px;">Chats</h3>
+            <div id="friends-list">
+                <p style="color: var(--text-secondary); font-size: 14px;">Loading friends...</p>
+            </div>
+        </aside>
+
+        <nav id="bottom-nav">
+            <a href="home.html" class="nav-item">Home</a>
+            <a href="chat.html" class="nav-item active">Chat</a>
+            <a href="create-post.html" class="nav-item">Post</a>
+            <a href="friends.html" class="nav-item">Friends</a>
+            <a href="profile.html" class="nav-item">Profile</a>
+        </nav>
+    </div>
+
+    <script type="module" src="js/app.js"></script>
+    <script type="module" src="js/chat.js"></script>
+</body>
+</html>
