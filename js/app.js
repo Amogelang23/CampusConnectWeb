@@ -19,7 +19,7 @@ export const auth = getAuth(app);
 export const db = getFirestore(app);
 export const storage = getStorage(app);
 
-export const GIPHY_API_KEY = "YOUR_GIPHY_API_KEY";
+export const GIPHY_API_KEY = "KYzS8QA4rPxKpA8TZO7ADVPRdqC2C0LA";
 
 onAuthStateChanged(auth, (user) => {
     const currentPage = window.location.pathname.split("/").pop();

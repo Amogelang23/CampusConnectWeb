@@ -87,8 +87,7 @@ document.addEventListener("DOMContentLoaded", () => {
         chatInterfaceView.style.display = "flex";
         chatHeaderName.innerText = friendName;
         messagesArea.innerHTML = ""; 
-        gifPicker.style.display = "none"; // Hide GIF picker when switching chats
-
+        gifPicker.style.display = "none"; 
         if (unsubscribeMessages) {
             unsubscribeMessages();
         }
@@ -151,7 +150,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 receiverId: activeChatUserId,
                 chatRoomId: roomId,
                 message: text,
-                imageUrl: null, // Null for text messages
+                imageUrl: null, 
                 timestamp: serverTimestamp()
             });
         } catch (error) {
@@ -172,7 +171,7 @@ document.addEventListener("DOMContentLoaded", () => {
     btnGif.addEventListener("click", () => {
         if (gifPicker.style.display === "none" || gifPicker.style.display === "") {
             gifPicker.style.display = "flex";
-            fetchGifs("trending"); // Load trending GIFs initially
+            fetchGifs("trending"); 
         } else {
             gifPicker.style.display = "none";
         }
@@ -185,11 +184,11 @@ document.addEventListener("DOMContentLoaded", () => {
         const query = e.target.value.trim();
         searchTimeout = setTimeout(() => {
             fetchGifs(query ? query : "trending");
-        }, 500); // Debounce to prevent too many API calls
+        }, 500); 
     });
 
     async function fetchGifs(searchQuery) {
-        if (!GIPHY_API_KEY || GIPHY_API_KEY === "YOUR_GIPHY_API_KEY") {
+        if (!GIPHY_API_KEY || GIPHY_API_KEY === "KYzS8QA4rPxKpA8TZO7ADVPRdqC2C0LA") {
             gifResults.innerHTML = "<p style='color: var(--color-red); grid-column: span 3; text-align: center;'>Please configure your Giphy API Key in app.js</p>";
             return;
         }
