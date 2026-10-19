@@ -14,37 +14,30 @@ const firebaseConfig = {
   measurementId: "G-X232DCE3QG"
 };
 
-// Initialize Firebase
 const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
 export const db = getFirestore(app);
 export const storage = getStorage(app);
 
-// Your Giphy API Key (Stored globally for use in chat/posts later)
 export const GIPHY_API_KEY = "YOUR_GIPHY_API_KEY";
 
-// 2. Global Authentication State Observer
-// This checks if a user is logged in on every page load
 onAuthStateChanged(auth, (user) => {
     const currentPage = window.location.pathname.split("/").pop();
     const isAuthPage = currentPage === "index.html" || currentPage === "" || currentPage === "register.html";
 
     if (user) {
         console.log("User is signed in:", user.uid);
-        // If logged in and trying to access the login page, redirect to home
         if (isAuthPage) {
             window.location.href = "home.html";
         }
     } else {
         console.log("User is signed out.");
-        // If logged out and trying to access a secure page, redirect to login
         if (!isAuthPage) {
             window.location.href = "index.html";
         }
     }
 });
 
-// 3. Global Logout Function
 export const logoutUser = async () => {
     try {
         await signOut(auth);
@@ -55,16 +48,13 @@ export const logoutUser = async () => {
     }
 };
 
-// 4. Theme Management
 export const toggleTheme = () => {
     const isDark = document.body.classList.toggle('dark-mode');
     localStorage.setItem('theme', isDark ? 'dark' : 'light');
 };
 
-// Initialize theme on page load
 const applySavedTheme = () => {
     const savedTheme = localStorage.getItem('theme');
-    // Default to dark mode if user prefers dark color scheme at OS level, otherwise check saved preference
     if (savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
         document.body.classList.add('dark-mode');
     } else {
@@ -72,12 +62,9 @@ const applySavedTheme = () => {
     }
 };
 
-// Run immediately on script load
 applySavedTheme();
 
-// Expose to window for inline HTML calls (e.g., onclick="toggleTheme()")
 window.toggleTheme = toggleTheme;
 
-// Expose logout to the window object so it can be called from HTML buttons easily
 window.logoutUser = logoutUser;
 
