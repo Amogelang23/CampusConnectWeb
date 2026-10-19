@@ -7,23 +7,60 @@
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/auth-style.css">
 </head>
-<body>
-    <div class="auth-wrapper">
-        <div class="auth-card">
-            <img src="https://via.placeholder.com/120?text=Logo" alt="Campus Connect Logo" class="auth-logo">
+<body class="auth-body">
+    <div class="auth-wrapper flex-center">
+        <div class="glass-panel sliding-auth-container" id="sliding-auth-container">
             
-            <input type="text" id="name-field" class="input-field hidden" placeholder="Full Name">
-            <input type="email" id="email-field" class="input-field" placeholder="Email">
-            <input type="password" id="password-field" class="input-field" placeholder="Password">
-            
-            <button id="btn-main-action" class="btn-primary" style="margin-bottom: 16px;">Login</button>
-            <button id="btn-toggle-auth" class="btn-outline">Need an account? Register</button>
-            
-            <div class="auth-divider"></div>
-            
-            <button id="btn-google-signin" class="btn-primary" style="background-color: #DB4437; border: none;">
-                Sign in with Google
-            </button>
+            <div class="form-container sign-up-container">
+                <form id="register-form" class="auth-form">
+                    <h2>Create Account</h2>
+                    <p class="auth-subtitle">Join the campus community</p>
+                    
+                    <input type="text" id="register-name" placeholder="Full Name" class="glass-input full-width" required>
+                    <input type="email" id="register-email" placeholder="Email" class="glass-input full-width" required>
+                    <input type="password" id="register-password" placeholder="Password" class="glass-input full-width" required>
+                    
+                    <button type="submit" class="btn-primary full-width mt-4">Register</button>
+                    
+                    <p class="mobile-toggle">Already have an account? <a href="#" id="mobile-to-login" class="text-link font-bold">Sign In</a></p>
+                </form>
+            </div>
+
+            <div class="form-container sign-in-container">
+                <form id="login-form" class="auth-form">
+                    <h2>Welcome Back</h2>
+                    <p class="auth-subtitle">Log in to CampusConnect</p>
+                    
+                    <input type="email" id="login-email" placeholder="Email" class="glass-input full-width" required>
+                    <input type="password" id="login-password" placeholder="Password" class="glass-input full-width" required>
+                    
+                    <button type="submit" class="btn-primary full-width mt-4">Login</button>
+                    
+                    <div class="auth-divider"></div>
+                    
+                    <button type="button" id="btn-google-signin" class="btn-primary full-width" style="background-color: #DB4437;">
+                        Sign in with Google
+                    </button>
+
+                    <p class="mobile-toggle">Don't have an account? <a href="#" id="mobile-to-register" class="text-link font-bold">Sign Up</a></p>
+                </form>
+            </div>
+
+            <div class="overlay-container">
+                <div class="overlay">
+                    <div class="overlay-panel overlay-left">
+                        <h2>Welcome Back!</h2>
+                        <p>To keep connected with us, please login with your personal info.</p>
+                        <button class="ghost-btn" id="slide-to-login">Sign In</button>
+                    </div>
+                    <div class="overlay-panel overlay-right">
+                        <h2>New Here?</h2>
+                        <p>Enter your details and start connecting with your campus.</p>
+                        <button class="ghost-btn" id="slide-to-register">Sign Up</button>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 

@@ -8,62 +8,56 @@ import {
 import { doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
 document.addEventListener("DOMContentLoaded", () => {
-    const nameField = document.getElementById("name-field");
-    const emailField = document.getElementById("email-field");
-    const passwordField = document.getElementById("password-field");
-    const btnMainAction = document.getElementById("btn-main-action");
-    const btnToggleAuth = document.getElementById("btn-toggle-auth");
+    const container = document.getElementById("sliding-auth-container");
+    const slideToRegisterBtn = document.getElementById("slide-to-register");
+    const slideToLoginBtn = document.getElementById("slide-to-login");
+    
+    const loginForm = document.getElementById("login-form");
+    const registerForm = document.getElementById("register-form");
     const btnGoogleSignIn = document.getElementById("btn-google-signin");
 
-    let isLoginMode = true;
+    slideToRegisterBtn.addEventListener("click", () => {
+        container.classList.add("right-panel-active");
+    });
 
-    btnToggleAuth.addEventListener("click", () => {
-        isLoginMode = !isLoginMode;
-        if (isLoginMode) {
-            nameField.classList.add("hidden");
-            btnMainAction.innerText = "Login";
-            btnToggleAuth.innerText = "Need an account? Register";
-        } else {
-            nameField.classList.remove("hidden");
-            btnMainAction.innerText = "Register";
-            btnToggleAuth.innerText = "Already have an account? Login";
+    slideToLoginBtn.addEventListener("click", () => {
+        container.classList.remove("right-panel-active");
+    });
+
+    loginForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const email = document.getElementById("login-email").value.trim();
+        const password = document.getElementById("login-password").value.trim();
+
+        try {
+            await signInWithEmailAndPassword(auth, email, password);
+            window.location.href = "home.html";
+        } catch (error) {
+            alert(error.message);
         }
     });
 
-    btnMainAction.addEventListener("click", async () => {
-        const email = emailField.value.trim();
-        const password = passwordField.value.trim();
-        const name = nameField.value.trim();
-
-        if (!email || !password) {
-            alert("Please fill in all required fields.");
-            return;
-        }
+    registerForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const name = document.getElementById("register-name").value.trim();
+        const email = document.getElementById("register-email").value.trim();
+        const password = document.getElementById("register-password").value.trim();
 
         try {
-            if (isLoginMode) {
-                await signInWithEmailAndPassword(auth, email, password);
-                window.location.href = "home.html"; 
-            } else {
-                if (!name) {
-                    alert("Please enter your full name.");
-                    return;
-                }
-                const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-                const user = userCredential.user;
-                
-                await setDoc(doc(db, "users", user.uid), {
-                    uid: user.uid,
-                    email: email.toLowerCase(),
-                    name: name,
-                    name_lowercase: name.toLowerCase(),
-                    profileImage: null,
-                    friends: [],
-                    friendRequests: []
-                });
-                
-                window.location.href = "home.html"; 
-            }
+            const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+            const user = userCredential.user;
+            
+            await setDoc(doc(db, "users", user.uid), {
+                uid: user.uid,
+                email: email.toLowerCase(),
+                name: name,
+                name_lowercase: name.toLowerCase(),
+                profileImage: null,
+                friends: [],
+                friendRequests: []
+            });
+            
+            window.location.href = "home.html";
         } catch (error) {
             alert(error.message);
         }
@@ -90,7 +84,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 });
             }
             
-            window.location.href = "home.html"; 
+            window.location.href = "home.html";
         } catch (error) {
             alert(error.message);
         }
