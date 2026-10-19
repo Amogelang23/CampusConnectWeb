@@ -1,0 +1,37 @@
+.auth-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            width: 100vw;
+            background-color: var(--color-background);
+        }
+        .auth-card {
+            background-color: var(--surface);
+            padding: 32px;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 400px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .auth-logo {
+            width: 120px;
+            height: 120px;
+            margin-bottom: 32px;
+            border-radius: 50%;
+            background-color: var(--primary);
+            object-fit: cover;
+        }
+        .hidden {
+            display: none;
+        }
+        .auth-divider {
+            width: 100%;
+            height: 1px;
+            background-color: var(--text-secondary);
+            margin: 24px 0;
+            opacity: 0.3;
+        }
