@@ -1,0 +1,36 @@
+.post-form-container {
+            background-color: var(--surface);
+            padding: 24px;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+        
+        textarea.input-field {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        #image-preview {
+            width: 100%;
+            max-height: 300px;
+            object-fit: contain;
+            border-radius: 8px;
+            display: none; 
+            background-color: #E0E0E0;
+        }
+
+        body.dark-mode #image-preview {
+            background-color: #333333;
+        }
+
+        #loading-overlay {
+            display: none;
+            text-align: center;
+            color: var(--primary);
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        
