@@ -26,15 +26,9 @@ onAuthStateChanged(auth, (user) => {
     const isAuthPage = currentPage === "index.html" || currentPage === "" || currentPage === "register.html";
     
     if (user) {
-        console.log("User is signed in:", user.uid);
-        if (isAuthPage) {
-            window.location.href = "home.html";
-        }
+        if (isAuthPage) window.location.href = "home.html";
     } else {
-        console.log("User is signed out.");
-        if (!isAuthPage) {
-            window.location.href = "index.html";
-        }
+        if (!isAuthPage) window.location.href = "index.html";
     }
 });
 
@@ -44,7 +38,7 @@ export const logoutUser = async () => {
         window.location.href = "index.html";
     } catch (error) {
         console.error("Error signing out: ", error);
-        alert("Failed to log out. Please try again.");
+        alert("Failed to log out.");
     }
 };
 
