@@ -18,6 +18,7 @@ const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
 export const db = getFirestore(app);
 export const storage = getStorage(app);
+
 export const GIPHY_API_KEY = "KYzS8QA4rPxKpA8TZO7ADVPRdqC2C0LA";
 
 onAuthStateChanged(auth, (user) => {
@@ -35,7 +36,7 @@ onAuthStateChanged(auth, (user) => {
             window.location.href = "index.html";
         }
     }
-}); 
+});
 
 export const logoutUser = async () => {
     try {
@@ -45,12 +46,12 @@ export const logoutUser = async () => {
         console.error("Error signing out: ", error);
         alert("Failed to log out. Please try again.");
     }
-}; 
+};
 
 export const toggleTheme = () => {
     const isDark = document.body.classList.toggle('dark-mode');
     localStorage.setItem('theme', isDark ? 'dark' : 'light');
-}; 
+};
 
 const applySavedTheme = () => {
     const savedTheme = localStorage.getItem('theme');
@@ -59,7 +60,7 @@ const applySavedTheme = () => {
     } else {
         document.body.classList.remove('dark-mode');
     }
-}; 
+};
 
 applySavedTheme();
 window.toggleTheme = toggleTheme;
